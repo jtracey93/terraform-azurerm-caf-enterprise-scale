@@ -53,13 +53,13 @@ module "enterprise_scale" {
 
   library_path = "${path.root}/lib"
 
-  # deploy_management_resources    = true
-  # configure_management_resources = local.configure_management_resources
-  # subscription_id_management     = "8200b669-cbc6-4e6c-b6d8-f4797f924074"
+  deploy_management_resources    = true
+  configure_management_resources = local.configure_management_resources
+  subscription_id_management     = "8200b669-cbc6-4e6c-b6d8-f4797f924074"
 
-  # deploy_connectivity_resources    = true
-  # configure_connectivity_resources = local.configure_connectivity_resources
-  # subscription_id_connectivity     = "7d58dc5d-93dc-43cd-94fc-57da2e74af0d"
+  deploy_connectivity_resources    = true
+  configure_connectivity_resources = local.configure_connectivity_resources
+  subscription_id_connectivity     = "7d58dc5d-93dc-43cd-94fc-57da2e74af0d"
 }
 
 
@@ -71,7 +71,7 @@ locals {
           enabled = true
           config = {
             address_space                   = ["10.87.0.0/16", ]
-            location                        = "uksouth"
+            location                        = "northeurope"
             enable_ddos_protection_standard = false
             dns_servers                     = ["1.1.1.1", "8.8.8.8"]
             bgp_community                   = ""
@@ -90,18 +90,18 @@ locals {
               }
             ]
             virtual_network_gateway = {
-              enabled = true
+              enabled = false
               config = {
                 address_prefix           = "10.87.254.0/24"
                 gateway_sku_expressroute = ""
-                gateway_sku_vpn          = "VpnGw1AZ"
+                gateway_sku_vpn          = ""
               }
             }
             azure_firewall = {
-              enabled = true
+              enabled = false
               config = {
                 address_prefix   = "10.87.255.0/24"
-                enable_dns_proxy = true
+                enable_dns_proxy = false
                 availability_zones = {
                   zone_1 = false
                   zone_2 = false
@@ -120,9 +120,9 @@ locals {
         }
       }
       dns = {
-        enabled = false
+        enabled = true
         config = {
-          location          = ""
+          location          = "northeurope"
           public_dns_zones  = []
           private_dns_zones = []
         }
@@ -171,14 +171,8 @@ locals {
         }
       }
     }
-    location = null
+    location = "northeurope"
     tags     = null
-    advanced = {
-      custom_settings_by_resource_type = {
-        azurerm_resource_group = {
-          name = "custom-rsg-name"
-        }
-      }
-    }
+    advanced = null
   }
 }

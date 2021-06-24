@@ -9,6 +9,8 @@
 resource "azurerm_virtual_network" "enterprise_scale" {
   for_each = local.azurerm_virtual_network_enterprise_scale
 
+  provider = azurerm.connectivity
+
   # Mandatory resource attributes
   name                = each.value.template.name
   resource_group_name = each.value.template.resource_group_name
@@ -40,6 +42,8 @@ resource "azurerm_virtual_network" "enterprise_scale" {
 
 resource "azurerm_subnet" "enterprise_scale" {
   for_each = local.azurerm_subnet_enterprise_scale
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                 = each.value.template.name
@@ -82,6 +86,8 @@ resource "azurerm_subnet" "enterprise_scale" {
 resource "azurerm_network_ddos_protection_plan" "enterprise_scale" {
   for_each = local.azurerm_network_ddos_protection_plan_enterprise_scale
 
+  provider = azurerm.connectivity
+
   # Mandatory resource attributes
   name                = each.value.template.name
   location            = each.value.template.location
@@ -99,6 +105,8 @@ resource "azurerm_network_ddos_protection_plan" "enterprise_scale" {
 
 resource "azurerm_public_ip" "enterprise_scale" {
   for_each = local.azurerm_public_ip_enterprise_scale
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -126,6 +134,8 @@ resource "azurerm_public_ip" "enterprise_scale" {
 
 resource "azurerm_virtual_network_gateway" "enterprise_scale" {
   for_each = local.azurerm_virtual_network_gateway_enterprise_scale
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name
@@ -228,6 +238,8 @@ resource "azurerm_virtual_network_gateway" "enterprise_scale" {
 
 resource "azurerm_firewall" "enterprise_scale" {
   for_each = local.azurerm_firewall_enterprise_scale
+
+  provider = azurerm.connectivity
 
   # Mandatory resource attributes
   name                = each.value.template.name

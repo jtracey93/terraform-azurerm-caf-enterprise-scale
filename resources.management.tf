@@ -1,6 +1,8 @@
 resource "azurerm_log_analytics_workspace" "enterprise_scale" {
   for_each = local.azurerm_log_analytics_workspace_enterprise_scale
 
+  provider = azurerm.management
+
   # Mandatory resource attributes
   name                = each.value.template.name
   location            = each.value.template.location
@@ -29,6 +31,8 @@ resource "azurerm_log_analytics_workspace" "enterprise_scale" {
 
 resource "azurerm_log_analytics_solution" "enterprise_scale" {
   for_each = local.azurerm_log_analytics_solution_enterprise_scale
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   solution_name         = each.value.template.solution_name
@@ -60,6 +64,8 @@ resource "azurerm_log_analytics_solution" "enterprise_scale" {
 resource "azurerm_automation_account" "enterprise_scale" {
   for_each = local.azurerm_automation_account_enterprise_scale
 
+  provider = azurerm.management
+
   # Mandatory resource attributes
   name                = each.value.template.name
   location            = each.value.template.location
@@ -78,6 +84,8 @@ resource "azurerm_automation_account" "enterprise_scale" {
 
 resource "azurerm_log_analytics_linked_service" "enterprise_scale" {
   for_each = local.azurerm_log_analytics_linked_service_enterprise_scale
+
+  provider = azurerm.management
 
   # Mandatory resource attributes
   resource_group_name = each.value.template.resource_group_name
