@@ -5,6 +5,7 @@ terraform {
     azurerm = {
       source  = "hashicorp/azurerm"
       version = ">= 2.63.0"
+      configuration_aliases = [ azurerm.management, azurerm.connectivity ]
     }
     time = {
       source  = "hashicorp/time"
